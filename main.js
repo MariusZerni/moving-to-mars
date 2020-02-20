@@ -10,7 +10,7 @@ let invaders = [44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 64, 65, 66, 67, 
 
 const rightColumIds = [19, 39, 59, 79, 99, 119, 139, 159, 179, 199, 219, 239, 259, 279, 299, 319, 339, 359, 379, 399]
 let invadersDirection = 'right'
-let changeDirection = false
+
 
 function projectOne() {
   const grid = document.querySelector('.grid')
@@ -28,7 +28,7 @@ function projectOne() {
 
   controlPlayer()
 
-  moveInvaders()
+  // moveInvaders()
 
 
 }
@@ -52,12 +52,11 @@ function createGrid(grid) {
 
 function moveInvaders() {
 
-  setInterval(() => {
+  const intervalId = setInterval(() => {
     if (invadersDirection === 'right') {
 
       for (let i = 0; i < invaders.length; i++) {
         const invader = invaders[i]
-
         cells[invader].classList.remove('invaders')
       }
 
@@ -70,12 +69,11 @@ function moveInvaders() {
         }
       }
 
-
       for (let i = 0; i < invaders.length; i++) {
 
         let invader = invaders[i]
 
-        if (lastColumn && !changeDirection) {
+        if (lastColumn) {
           invader = invader + 20
         } else {
           invader = invader + 1
@@ -85,19 +83,8 @@ function moveInvaders() {
         cells[invader].classList.add('invaders')
       }
 
-      if (lastColumn && !changeDirection) {
-
-        if (invadersDirection === 'right') {
-          invadersDirection = 'left'
-        } else {
-          invadersDirection = 'right'
-        }
-        console.log(invadersDirection)
-
-        changeDirection = true
-
-      } else {
-        changeDirection = false
+      if (lastColumn) {
+        invadersDirection = 'left'
       }
 
     } else if (invadersDirection === 'left') {
@@ -108,11 +95,11 @@ function moveInvaders() {
         cells[invader].classList.remove('invaders')
       }
 
-      let lastColumn = false
+      let firstColumn = false
       for (let i = 0; i < invaders.length; i++) {
         const invader = invaders[i]
         if ((invader) % 20 === 0) {
-          lastColumn = true
+          firstColumn = true
         }
       }
 
@@ -120,7 +107,7 @@ function moveInvaders() {
 
         let invader = invaders[i]
 
-        if (lastColumn && !changeDirection) {
+        if (firstColumn) {
           invader = invader + 20
         } else {
           invader = invader - 1
@@ -130,23 +117,19 @@ function moveInvaders() {
         cells[invader].classList.add('invaders')
       }
 
-      if (lastColumn && !changeDirection) {
-
-        if (invadersDirection === 'right') {
-          invadersDirection = 'left'
-        } else {
-          invadersDirection = 'right'
-        }
-
-        console.log(invadersDirection)
-        changeDirection = true
-
-      } else {
-        changeDirection = false
+      if (firstColumn) {
+        invadersDirection = 'right'
       }
     }
 
-  }, 1000)
+
+    invaders.forEach((invader) => {
+      if (invader >= 380) {
+        clearInterval(intervalId)
+      }
+    })
+
+  }, 500)
 }
 
 function controlPlayer() {
