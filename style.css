@@ -33,3 +33,12 @@ body {
 .player {
   background-color: black;
 }
+
+.bombs {
+  border-radius: 20px;
+  background-color: black;
+}
+
+.laser {
+  background-color: red;
+}
