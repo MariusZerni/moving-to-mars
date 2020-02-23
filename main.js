@@ -169,15 +169,18 @@ function projectOne() {
         }
 
       } else if (laser / 20 === 0) {
-        console.log('firstRow')
+        //console.log('firstRow')
         cells[laser].classList.remove('laser')
         laser = player - 20
       }
 
       cells[laser].classList.add('laser')
-      makeInvadersDisappear()
+      if (makeInvadersDisappear()) {
+        laser = player - 20
 
-    }, 600)
+      }
+
+    }, 100)
 
 
 
@@ -192,26 +195,34 @@ function projectOne() {
       if (invader === laser) {
         cells[invader].classList.remove('invaders')
         foundInvader = invader
+
+        cells[laser].classList.remove('laser')
+
       }
     })
     if (foundInvader !== -1) {
       const index = invaders.indexOf(foundInvader)
-      invaders.splice(index,1)
-      console.log(foundInvader + ' ' + invaders)
+      invaders.splice(index, 1)
+      //console.log(foundInvader + ' ' + invaders)
     }
+    return (foundInvader !== -1)
 
   }
-  makeInvadersDisappear()
+  
 
 
 
 
   function generateBombs() {
     const secondIntervalId = setInterval(() => {
-      const invadersDropBombs = invaders.slice(-12)
+      const invadersDropBombs = findMostAdvancedInvaders()
+
+      // console.log(invadersDropBombs)
       let randomInvader = invadersDropBombs[Math.floor(Math.random() * (invadersDropBombs.length))]
+      randomInvader += 20
+
       cells[randomInvader].classList.add('bombs')
-      console.log(randomInvader)
+      // console.log(randomInvader)
       setInterval(() => {
 
         if (randomInvader < 399) {
@@ -232,7 +243,20 @@ function projectOne() {
   generateBombs()
 
 
+  function findMostAdvancedInvaders() {
 
+    const objectInvadersPerColumn = {}
+    
+    console.log(invaders)
+    for (let i = 0; i < invaders.length; i++) {
+      const key = invaders[i] % 20
+      console.log(key)
+
+      objectInvadersPerColumn[key] = invaders[i]
+    }
+    console.log(objectInvadersPerColumn)
+    return Object.values(objectInvadersPerColumn)
+  }
 
 
 
