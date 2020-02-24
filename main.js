@@ -15,7 +15,7 @@ function projectOne() {
   let invadersDirection = 'right'
 
 
-
+  // const scores = document.querySelector('score')
   const grid = document.querySelector('.grid')
 
   createGrid(grid)
@@ -25,21 +25,31 @@ function projectOne() {
   cells[player].classList.add('player')
 
   //create invaders
-  let invader = invaders.forEach((invader) => {
+  invaders.forEach((invader) => {
     cells[invader].classList.add('invaders')
   })
 
-  controlPlayer()
+  const start = document.querySelector('start')
+  function playGame () {
+    start.addEventListener('click', () => {
+
+
+    })
+
+  }
+  playGame()
+
+
+
 
   moveInvaders()
-
 
   function createGrid(grid) {
 
     for (let i = 0; i < gridCellCount; i++) {
 
       const cell = document.createElement('div')
-      cell.innerHTML = i
+      // cell.innerHTML = i
 
       cell.classList.add('cell')
 
@@ -136,6 +146,7 @@ function projectOne() {
     document.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowRight') {
         if (player === cells.length - 1) {
+          alert('test')
           return
         }
         cells[player].classList.remove('player')
@@ -182,10 +193,8 @@ function projectOne() {
 
     }, 100)
 
-
-
-
   }
+  controlPlayer()
 
 
   function makeInvadersDisappear() {
@@ -198,6 +207,7 @@ function projectOne() {
 
         cells[laser].classList.remove('laser')
 
+
       }
     })
     if (foundInvader !== -1) {
@@ -208,7 +218,7 @@ function projectOne() {
     return (foundInvader !== -1)
 
   }
-  
+
 
 
 
@@ -219,6 +229,9 @@ function projectOne() {
 
       // console.log(invadersDropBombs)
       let randomInvader = invadersDropBombs[Math.floor(Math.random() * (invadersDropBombs.length))]
+
+      // cells[randomInvader].classList.remove('bombs')
+
       randomInvader += 20
 
       cells[randomInvader].classList.add('bombs')
@@ -234,6 +247,7 @@ function projectOne() {
             cells[randomInvader].classList.add('bombs')
           } else {
             cells[randomInvader].classList.remove('bombs')
+            // console.log(cells[randomInvader])
           }
         }
       }, 500)
@@ -246,29 +260,25 @@ function projectOne() {
   function findMostAdvancedInvaders() {
 
     const objectInvadersPerColumn = {}
-    
-    console.log(invaders)
+
+    // console.log(invaders)
     for (let i = 0; i < invaders.length; i++) {
       const key = invaders[i] % 20
-      console.log(key)
 
       objectInvadersPerColumn[key] = invaders[i]
     }
-    console.log(objectInvadersPerColumn)
+    // console.log(objectInvadersPerColumn)
     return Object.values(objectInvadersPerColumn)
   }
 
 
 
-
-
-
-
-
-
-
-
 }
+  
+
+
+
 
 
 window.addEventListener('DOMContentLoaded', projectOne)
+
