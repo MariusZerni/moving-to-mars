@@ -9,57 +9,65 @@ body {
   align-items: center;
   flex-direction: column;
   margin: 0;
-  background-color: rgb(126, 199, 221);
+  /* background-color: rgb(126, 199, 221); */
+  background-image: url('images/background-img.jpg');
+  background-size: cover;
 }
 
 .grid {
   display: none;
-  width: 600px;
+  width: 800px;
   height: 600px;
-  border: 3px solid green;
+  /* border: 3px solid green; */
   flex-wrap: wrap;
   flex-direction: row;
-  align-items: flex-end;
-  background-color: rgb(67, 99, 126);
+  justify-content: center;
+  align-items: center;
+  margin-right: 100px;
+  /* background-color: rgb(67, 99, 126); */
 }
 
 .cell {
   display: flex;
   width: 5%;
   height: 5%;
+  justify-content: center;
+  align-content: center;
   /* border: 1px solid grey; */
 }
 
 .invaders {
   background-image: url("images/spaceship.png");
-  background-size: cover;
+  background-size: 100%;
   background-repeat: no-repeat;
+  justify-content: center;
+  align-items: center;
 }
 
 .player {
-  display: flex;
-  background-image: url("images/player.jpeg");
-  background-size: cover;
+  /* display: flex; */
+  background-image: url("images/player.png");
+  background-size: 80%;
   background-repeat: no-repeat;
-  flex: 2;
+  /* flex: 2; */
 }
 
 .bombs {
-  background-image: url("images/bomb.jpeg");
-  background-size: contain;
+  background-image: url("images/bombs.png");
+  background-size: 40%;
   background-repeat: no-repeat;
 }
 
 .laser {
-  background-image: url("images/laser.jpeg");
-  background-size: contain;
+  background-image: url("images/laser-beam.png");
+  background-size: 60%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .main {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: center;
   width: 100%;
 }
@@ -68,7 +76,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 20px;
   width: 350px;
   
 }
@@ -76,14 +83,53 @@ body {
 p {
   font-size: 40px;
   display: none;
+  color: rgb(241, 245, 35);
+  font-family: 'Orbitron', serif;
 }
 
 button {
-  padding: 30px;
-  background-color: rgb(10, 230, 76);
+  padding: 20px;
+  background-color: rgb(241, 245, 35);
+  
+}
+
+.start {
+  font-family: 'Akronim', serif;
+  font-size: 80px;
+  border: 2px solid grey;
+  border-radius: 10px;
 }
 
 .play {
   display: none;
+  font-family: 'Akronim', serif;
+  width: 60%;
+  font-size: 40px;
+  border: 2px solid grey;
+  border-radius: 10px;
+}
+
+.winning {
+  display: none;
+}
+
+.grid-game-over {
+  display: none;
+  width: 100%;
+  /* height: 100%; */
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.game-over {
+  display: flex;
+  padding: 40px 60px;
+  background-color: rgb(241, 245, 35);
+  font-size: 40px;
+  font-family: 'Orbitron', serif;
+  border: 2px solid grey;
+  border-radius: 10px;
 }
 
