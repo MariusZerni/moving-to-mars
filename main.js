@@ -76,6 +76,10 @@ function projectOne() {
 
 
   start.addEventListener('click', () => {
+    audio.src = 'sounds/husksrevealed.mp3'
+    audio.play()
+
+    // document.querySelector('.control-player').style.display = 'block'
 
     recreateGrid()
   })
@@ -88,7 +92,21 @@ function projectOne() {
     const paragraphs = document.querySelectorAll('p')
     paragraphs.forEach((p) => {
       p.style.display = 'block'
+
+
     })
+
+
+
+    // const objStoragePlayer = JSON.parse(localStorage.getItem('player'))
+
+    // if (objStoragePlayer !== null && objStoragePlayer.length > 0) {
+
+    //   console.log(objStoragePlayer.length)
+    //   score = objStoragePlayer[10].score
+    // }
+
+
 
     newScore = document.querySelector('.score')
     updateScore(newScore, score)
@@ -107,24 +125,25 @@ function projectOne() {
       cells[invader].classList.add('invaders')
 
     })
-
+    
 
     play.style.display = 'block'
     start.style.display = 'none'
 
-
-
   }
+
 
 
 }
 
 
 
-
-
-
 window.addEventListener('DOMContentLoaded', projectOne)
+
+
+
+
+
 
 
 
@@ -145,7 +164,24 @@ function stopGame(wonGame) {
       document.querySelector('.grid-game-over').style.display = 'flex'
       document.querySelector('.play').innerHTML = 'Play Again'
       document.querySelector('.game-over').innerHTML = 'You win!'
+
+      // using localStorage to save score
+
+      // if (localStorage === updateScore()) {
+      //   localStorage.setItem('player', JSON.stringify([{ name: 'Marius', score: 0 }]))
+      // }
+
+      // const objStoragePlayer = JSON.parse(localStorage.getItem('player'))
+
+      // objStoragePlayer.push({ name: 'Marius', score: score })
+
+
+      // localStorage.setItem('player', JSON.stringify(objStoragePlayer))
+
+
+
     }
+
     isStarted = false
   }
 
@@ -155,9 +191,10 @@ function stopGame(wonGame) {
 function updateScore(scoreSelector, score) {
   scoreSelector.innerHTML = score
 
-  if (score === 600) {
+  if (score === 6000) {
 
     stopGame(true)
+
 
 
   }
@@ -165,13 +202,12 @@ function updateScore(scoreSelector, score) {
 }
 
 
-
 function createGrid(grid) {
 
   for (let i = 0; i < gridCellCount; i++) {
 
     const cell = document.createElement('div')
-    cell.innerHTML = i
+    // cell.innerHTML = i
 
     cell.classList.add('cell')
 
@@ -180,6 +216,7 @@ function createGrid(grid) {
 
   }
 }
+
 
 function moveInvaders() {
 
@@ -266,9 +303,7 @@ function moveInvaders() {
 
 function controlPlayer() {
 
-
   document.addEventListener('keydown', (event) => {
-    console.log(player)
     if (event.key === 'ArrowRight') {
       if (player === cells.length - 1) {
         return
@@ -286,28 +321,28 @@ function controlPlayer() {
       player -= 1
       cells[player].classList.add('player')
     }
-    console.log('after' + player)
-
 
   })
 
   playerShooting()
 
-
-
 }
+
 
 function playerShooting() {
   let firstRun = true
+  
+
 
   controlPlayerInterval = setInterval(() => {
-
+   
 
     if (firstRun) {
       laser = (player - 20)
       firstRun = false
     } else if (!(laser / 20 === 0)) {
       cells[laser].classList.remove('laser')
+      
       if (laser - 20 >= 0) {
         laser -= 20
       } else {
@@ -317,15 +352,18 @@ function playerShooting() {
     } else if (laser / 20 === 0) {
       cells[laser].classList.remove('laser')
       laser = player - 20
+      
     }
 
     cells[laser].classList.add('laser')
     if (makeInvadersDisappear()) {
       laser = player - 20
-
+      audio.src = 'sounds/invaderkilled.wav'
+    audio.play()
     }
+    
 
-  }, 200)
+  }, 50)
 
 }
 
@@ -411,6 +449,7 @@ function findMostAdvancedInvaders() {
   }
   return Object.values(objectInvadersPerColumn)
 }
+
 
 
 
