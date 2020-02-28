@@ -22,6 +22,9 @@ let isStarted = false
 function projectOne() {
 
 
+  //  document.querySelector('.control-player').style.display = 'block'
+
+
   const start = document.querySelector('.start')
   const play = document.querySelector('.play')
 
@@ -79,7 +82,6 @@ function projectOne() {
     audio.src = 'sounds/husksrevealed.mp3'
     audio.play()
 
-    // document.querySelector('.control-player').style.display = 'block'
 
     recreateGrid()
   })
