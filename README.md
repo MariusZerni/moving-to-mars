@@ -17,7 +17,7 @@ You can check the game [here](https://mariuszerni.github.io/project-1/)
 - You need to avoid the bombs dropped by the enemies
 - Start with 3 lives
 - If you're touched by a bomb you lose one life (hit 3 times, game over)
-- Every time you kill an enemy you get 100 points.
+- Every time you kill an enemy you get 100 points
 - If you manage to kill all the enemies, you win the game
 
 
@@ -40,7 +40,7 @@ You can check the game [here](https://mariuszerni.github.io/project-1/)
 
 ## Approach
 
-First I've created a function in JavaScript where I used a loop to create the grid where I displayed the enemies and the player. The loop is creating a 20*20 grid.
+First I've created a function in JavaScript where I used a loop to create the grid where enemies and player are displayed. The loop is creating a 20*20 grid.
 
 ## Displaying the grid
 I'm initialising a variable 'width' with the value of 20 and another variable that stores the number of cells on the grid (width * width).
@@ -56,12 +56,12 @@ function createGrid(grid) {
 }
 ```
 
-## Enemies' movement
-To make the game more difficult, I've created a function where all the enemies are moving to the right, left and down. In order to do that I had to use a 'setInterval' to move them every 2 seconds. First I had to keep track of the the current position of the enemies and increment it to make them moving forward (implemented by adding/removing CSS classes).
+## Enemies movement
+To make the game more difficult, I've created a function where all the enemies are moving to the right, left and down. In order to do that, I had to use a 'setInterval' to move them every 2 seconds. First I had to keep track of the the current position of the enemies and increment it to make them moving forward (implemented by adding/removing CSS classes).
 
-Once the enemies are reaching the right margin of the grid, they are then moving down one column and same on the left margin. For this logic to work I've created a for loop to check if the enemies are on the last column (cell number dividing by 20), then instead of adding 1 we're adding 20 which is the width of the grid, same is for the left margin, but here we're subtracting 20.
+Once the enemies are reaching the right end of the grid, then they move down one column and same on the left margin. For this logic to work, I've created a loop to check if the enemies are on the last column (cell number dividing by 20); then instead of incremening the position with 1, I'm incrementing 20 which is the width of the grid, same for the left margin.
 
-If the player didn't kill the enemies before reaching the bottom of the grid, then the clearInterval function is getting triggered and stopping the game.
+If the player hasn't kill the enemies before reaching the bottom of the grid, then the clearInterval function gets triggered and the game stops.
 
 ```js
 function moveInvaders() {
@@ -130,11 +130,11 @@ function moveInvaders() {
 ## Player control
 I also had to create a function where the user can control the player to be able to shoot the enemies.
 
-I've added an event listener 'keydown' with 'ArrowRight' and 'ArrowLeft'. Every time the right arrow key is pressed, the player is moving one cell to the right, and similarly for the left arrow key.
+I've added an event listener 'keydown' with 'ArrowRight' and 'ArrowLeft'. Every time the right arrow key is pressed, the player moves one cell to the right, and similarly for the left arrow key.
 
 The player is able to move only on the last row. 
 
-To enforce that, I'm checking if the player's cell index is in the interval [380, 399] (meaning [cells.length - 20, cells.length - 1]).
+To enforce that, I've checked if the player's cell index is in the interval [380, 399] (meaning [cells.length - 20, cells.length - 1]).
 
 
 ```js
@@ -160,8 +160,8 @@ function controlPlayer() {
 }
 ```
 
-## Player Shotting
-Next I have a function where the player can shoot the enemies. This function is called in the controlPlayer function which is shooting automatically every 0.05 seconds. 
+## Player Shootting
+Next I have a function where the player can shoot the enemies. This function is called in the controlPlayer function which is shoots automatically every 0.05 seconds. 
 
 ```js
 function playerShooting() {
@@ -192,7 +192,7 @@ function playerShooting() {
 ```
 
 ## Enemies collision with the laser
-Now that I have the function that is shooting enemies I have to check if the player managed to hit an enemy. For this I've created a function to check if the laser is in the same cell as the enemy, if so, I'm removing the enemy and also the laser.
+Now that I have the function that enables enemies shooting, I have to check if the player managed to hit an enemy. For this, I've created a function to check if the laser is in the same cell as the enemy, if so, I'm removing the enemies and the laser are removed.
 
 ```js
 function makeInvadersDisappear() {
@@ -215,7 +215,7 @@ function makeInvadersDisappear() {
 ```
 
 ## Dropping bombs 
-Because moving to Mars is not easy, the enemies are dropping bombs. For that I'm using two JavaScript methods: 'Math.floor' and 'Math.random' that are generating a random number. The number generated is related with an enemy that is inside that cell. 
+I've used two JavaScript methods: 'Math.floor' and 'Math.random' that generate a random number. The number generated is related with an enemy that is inside that cell. 
 
 ```js
 function generateBombs() {
@@ -253,7 +253,7 @@ function generateBombs() {
 ```
 
 
-To establish which enemies can drop bombs I had to create a function to find the most advanced enemies from each row. 
+To establish which enemies can drop bombs, I had to create a function to find the most advanced enemies from each row. 
 
 ```js
 function findMostAdvancedInvaders() {
@@ -268,7 +268,7 @@ function findMostAdvancedInvaders() {
 
 
 ## Updating the score
-Because it is a game, we need to keep score and to know who's won. For that I have a function to update the score and let the user know if he won.
+Since it is a game, we need to keep score and to know who wins. For that, I created a function to update the score and let the user know if he won.
 
 ```js
 function updateScore(scoreSelector, score) {
@@ -280,17 +280,15 @@ function updateScore(scoreSelector, score) {
 ```
 
 ## Challenges
-- The biggest challenge of this project was creating the logic of making the enemies move in the right direction. The logic that I created with incrementing/decrementing the enemy position was working only till the enemies reached the end of the row. For that I had to come up with another logic to make them move down one row and then move them in the opposite diection.
+The biggest challenge of this project was creating the logic of making the enemies move in the right direction. The logic that I created with incrementing/decrementing the enemy position was working only till the enemies reached the end of the row. For that, I had to come up with another logic to make move down one row and then move them in the opposite direction.
 
 ## Wins
-- My biggest challenge was also my biggest win. I knew from the start, once I'll have this logic working, I'm half way through. Even though it took me a bit more time than I expected, having that done I've ended up having a better understanding on how to create algorithms in JavaScript.
+My biggest challenge was also my biggest win. I knew from the start, once I had had have this logic working, I would have been half way through. Even though it took me a bit more time than I expected, having that done, I've ended up having a better understanding on how to create algorithms in JavaScript.
 
 ## Potential future features
-
 - Adding difficulty levels
 - More & better sounds
 
 ## Lessons learned
-
 - Spending more time on planning at the beginning 
 - Testing the code
