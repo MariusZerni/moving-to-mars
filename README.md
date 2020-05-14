@@ -283,7 +283,7 @@ function updateScore(scoreSelector, score) {
 - The biggest challenge of this project was creating the logic of making the enemies move in the right direction. The logic that I created with incrementing/decrementing the enemy position was working only till the enemies reached the end of the row. For that I had to come up with another logic to make them move down one row and then move them in the opposite diection.
 
 ## Wins
-My biggest challenge was also my biggest win. I knew from the start, once I'll have this logic working, I'm half way through. Even though it took me a bit more time than I expected, having that done I've ended up having a better understanding on how to create algorithms in JavaScript.
+- My biggest challenge was also my biggest win. I knew from the start, once I'll have this logic working, I'm half way through. Even though it took me a bit more time than I expected, having that done I've ended up having a better understanding on how to create algorithms in JavaScript.
 
 ## Potential future features
 
