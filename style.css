@@ -14,15 +14,17 @@ body {
 }
 
 .grid {
+  /* margin-bottom: 30px; */
   display: none;
   width: 800px;
   height: 600px;
-  /* border: 3px solid green; */
+  border: 1px solid yellow;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-right: 100px;
+  /* margin-right: 100px; */
+  z-index: 1;
 }
 
 .cell {
@@ -66,13 +68,29 @@ body {
   flex-direction: row-reverse;
   justify-content: center;
   width: 100%;
+  
+}
+
+.planet-mars {
+  background-image: url("images/mars.png");
+  /* background-size: contain; */
+  background-repeat: no-repeat;
+  background-position: left;
+
+}
+
+.overlay {
+  z-index: 1;
+  background-color:rgba(192, 185, 185, 0.15);
 }
 
 .aside {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 350px;
+  /* align-items: flex-start; */
+  width: 25%;
+  /* z-index: -1; */
   
 }
 
