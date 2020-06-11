@@ -99,21 +99,6 @@ function stopGame(wonGame) {
       document.querySelector('.play').innerHTML = 'Play Again'
       document.querySelector('.game-over').innerHTML = 'You win!'
 
-      // using localStorage to save score
-
-      // if (localStorage === updateScore()) {
-      //   localStorage.setItem('player', JSON.stringify([{ name: 'Marius', score: 0 }]))
-      // }
-
-      // const objStoragePlayer = JSON.parse(localStorage.getItem('player'))
-
-      // objStoragePlayer.push({ name: 'Marius', score: score })
-
-
-      // localStorage.setItem('player', JSON.stringify(objStoragePlayer))
-
-
-
     }
 
     isStarted = false
@@ -271,30 +256,30 @@ function makeInvadersDisappear() {
 function generateBombs() {
   secondIntervalId = setInterval(() => {
     const invadersDropBombs = findMostAdvancedInvaders()
-    let randomInvader = invadersDropBombs[Math.floor(Math.random() * (invadersDropBombs.length))]
-    randomInvader += 20
-    cells[randomInvader].classList.add('bombs')
-    const thirdIntervalId = setInterval(() => {
+    let bombPosition = invadersDropBombs[Math.floor(Math.random() * (invadersDropBombs.length))]
+    bombPosition += 20
+    cells[bombPosition].classList.add('bombs')
+    const bombUpdateInterval = setInterval(() => {
       if (isGameOver) {
-        clearInterval(thirdIntervalId)
+        clearInterval(bombUpdateInterval)
       }
-      if (randomInvader < 399) {
-        cells[randomInvader].classList.remove('bombs')
-        if (randomInvader + 20 < 399) {
-          randomInvader += 20
-          cells[randomInvader].classList.add('bombs')
+      if (bombPosition < 399) {
+        cells[bombPosition].classList.remove('bombs')
+        if (bombPosition + 20 < 399) {
+          bombPosition += 20
+          cells[bombPosition].classList.add('bombs')
         } else {
-          cells[randomInvader].classList.remove('bombs')
+          cells[bombPosition].classList.remove('bombs')
 
-          if (randomInvader === player) {
+          if (bombPosition === player) {
             lives -= 1
             livesRemaining.innerHTML = lives
             if (lives === 0) {
-              clearInterval(thirdIntervalId)
+              clearInterval(bombUpdateInterval)
               stopGame(false)
             }
           }
-          clearInterval(thirdIntervalId)
+          clearInterval(bombUpdateInterval)
         }
       }
     }, 300)
@@ -304,6 +289,7 @@ function generateBombs() {
 function findMostAdvancedInvaders() {
   const objectInvadersPerColumn = {}
   for (let i = 0; i < invaders.length; i++) {
+    console.log(i)
     const key = invaders[i] % 20
     objectInvadersPerColumn[key] = invaders[i]
   }
